@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="toolbar">
+        <a href="MapView.html">
+            <button id="mapButton">
+                <img src="map.png" alt="Map">
+            </button>
+        </a>
+        <h1>FreeLunch</h1>
+        <div class="dropdown">
+            <button id="filterButton">
+                <img src="filter.png" alt="Filter">
+            </button>
+            <div class="dropdown-content">
+                <label><input type="checkbox">Vegetarian</label>
+                <label><input type="checkbox">Gluten Free</label>
+                <label><input type="checkbox">Vegan</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-toolbar">
+        <button id="activeButton" onclick="changeTab('activeButton', 'App')">Active</button>
+        <button id="upcomingButton" onclick="changeTab('upcomingButton')">Upcoming</button>
+        <button id="archivedButton" onclick="changeTab('archivedButton')">Archived</button>
+    </div>
+
+    <div class="App">
+
+        <!-- List -->
+        <div class="List">
+            <!-- List Item 1 -->
+            <div class="list-item">
+                <div>
+                   <!-- <div class="item-image">
+                        <img src="pizza.jpeg" alt="Pizza">
+                    </div><!-->
+                    <div class='item-primary-text'>Pizza in Mudd</div>
+                    <div class='item-secondary-text'>CS Lounge, 500 W 120th St</div>
+                </div>
+            </div>
+
+            <!-- List Item 2 -->
+            <div class="list-item">
+                <div>
+                    <div class='item-primary-text'>Free Insomnia Cookies</div>
+                    <div class='item-secondary-text'>Uris 130, 3022 Broadway</div>
+                </div>
+            </div>
+
+            <!-- List Item 3 -->
+            <div class="list-item">
+                <div>
+                    <div class='item-primary-text'>Extra Muffins</div>
+                    <div class='item-secondary-text'>CS Lounge, Mudd</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to set the default state of the page
+        function setDefaultState() {
+            // Add the "active" class to the "Active" button
+            document.getElementById('activeButton').classList.add('active');
+    
+            // Show the content for the "Active" tab
+            var activeContent = document.querySelector('.App');
+            activeContent.style.display = 'block';
+        }
+    
+        // Function to handle tab changes
+        function changeTab(tabId, contentId) {
+            // Remove the "active" class from all buttons
+            document.getElementById('activeButton').classList.remove('active');
+            document.getElementById('upcomingButton').classList.remove('active');
+            document.getElementById('archivedButton').classList.remove('active');
+    
+            // Add the "active" class to the clicked button
+            document.getElementById(tabId).classList.add('active');
+    
+            // Toggle the visibility of the content based on the active tab
+            var content = document.getElementById(contentId);
+            var activeContent = document.querySelector('.App');
+    
+            if (tabId === 'activeButton') {
+                activeContent.style.display = 'block';
+            } else {
+                activeContent.style.display = 'none';
+            }
+        }
+    
+        // Call the setDefaultState function when the page loads
+        window.onload = setDefaultState;
+    </script>
+    
+    
+
+</body>
+
+</html>
