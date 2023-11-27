@@ -8,6 +8,12 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
   }
 
   /* Map/FreeLunch/Filter toolbar */
@@ -95,47 +101,69 @@
       right: auto;
   }
   
-  /* Styling for list components 
-  Taken from Prof Smith's example */
-  .List {
+  .ActiveList {
     margin-top: 3rem;
-  }
-  
-  .list-item {
     display: flex;
-    flex-direction: row;
-    background-color: #FFFFFF;
-    padding: 100px;
-    border-radius: 20px;
-    text-align: left;
-    margin: 1rem 0rem;
-    box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* For images in each list box */
-  .item-image {
-    width: 100px; /* Set width for the square image */
-    height: 100px; /* Set height for the square image */
-    margin-right: 20px; /* Add margin to separate image from text */
+  .UpcomingList {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ArchivedList {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list-item {
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 20px; /* Adjusted padding for better spacing */
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    border: 1px solid red;
+    width: 600px;
+    margin-bottom: 20px; /* Adjusted margin for spacing between list items */
+    
+  }
+
+  .item-image img {
+    width: 250px;
+    height: 210px;
   }
 
   /* Texts on event box */
   .item-text {
-    flex-grow: 1; /* Allow text to take remaining space */
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    margin-top: 10px; /* Adjusted margin for spacing between image and text */
   }
-  
+
   .item-primary-text {
     color: #36476D;
     font-size: 1.5rem;
     font-weight: 600;
+    margin-bottom: 5px;
   }
-  
+
   .item-secondary-text {
     color: #828EA6;
     font-size: 1.2rem;
     line-height: 1rem;
   }
+
+ 
+
+  
+
 
 
   

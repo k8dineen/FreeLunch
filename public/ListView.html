@@ -39,23 +39,32 @@
     </div>
 
     <!-- Active List -->
-    <div class="List">
-        <div class="list-item">
-            <div>
-                <div class='item-primary-text'>Pizza in Mudd</div>
-                <div class='item-secondary-text'>CS Lounge, 500 W 120th St</div>
+    <div class="ActiveList">
+            <div class ="list-item">
+                <div class="item-image">
+                    <img src = "pizza.jpeg" alt="Pizza">
+                </div>
+                <div class = "item-text">
+                    <div class='item-primary-text'>Pizza in Mudd</div>
+                    <div class='item-secondary-text'>CS Lounge, 500 W 120th St</div>
+                </div>
             </div>
-        </div>
 
         <div class="list-item">
-            <div>
+            <div class = "item-image">
+                <img src = "cookies.jpeg" alt="Cookies">
+            </div>
+            <div class = "item-text">
                 <div class='item-primary-text'>Free Insomnia Cookies</div>
                 <div class='item-secondary-text'>Uris 130, 3022 Broadway</div>
             </div>
         </div>
 
         <div class="list-item">
-            <div>
+            <div class="item-image">
+                <img src="muffins.jpeg" alt="Muffins">
+            </div>
+            <div class = "item-text">
                 <div class='item-primary-text'>Extra Muffins</div>
                 <div class='item-secondary-text'>CS Lounge, Mudd</div>
             </div>
@@ -65,14 +74,20 @@
     <!-- Upcoming List -->
     <div class="UpcomingList" style="display: none;">
         <div class="list-item">
-            <div>
+            <div class="item-image">
+                <img src="sorority.jpeg">
+            </div>
+            <div class="item-text" >
                 <div class='item-primary-text'>Gamma Phi Beta Social!</div>
                 <div class='item-secondary-text'>GPB House, 552 W 113th St</div>
             </div>
         </div>
 
         <div class="list-item">
-            <div>
+            <div class = "item-image">
+                <img src="gssc.png">
+            </div>
+            <div class="item-text">
                 <div class='item-primary-text'>Shake Shack for GS Students</div>
                 <div class='item-secondary-text'>GS Lounge, Lewisohn Hall</div>
             </div>
@@ -82,14 +97,20 @@
     <!-- Archived List -->
     <div class="ArchivedList" style="display: none;">
         <div class="list-item">
-            <div>
+            <div class="item-image">
+                <img src="muffins2.jpeg" alt="Muffins2">
+            </div>
+            <div class="item-text">
                 <div class='item-primary-text'>Leftover Muffins</div>
                 <div class='item-secondary-text'>Kent Hall, 1140 Amsterdam Ave</div>
             </div>
         </div>
 
         <div class="list-item">
-            <div>
+            <div class="item-image">
+                <img src="pizza2.jpg">
+            </div>
+            <div class="item-text">
                 <div class='item-primary-text'>Pizza in Uris!</div>
                 <div class='item-secondary-text'>Uris Room M11</div>
             </div>
@@ -103,7 +124,7 @@
             document.getElementById('activeButton').classList.add('active');
 
             // Show the content for the "Active" tab
-            var activeContent = document.querySelector('.List');
+            var activeContent = document.querySelector('.ActiveList');
             activeContent.style.display = 'block';
         }
 
@@ -118,7 +139,7 @@
             document.getElementById(tabId).classList.add('active');
 
             // Toggle the visibility of the content based on the active tab
-            var activeContent = document.querySelector('.List');
+            var activeContent = document.querySelector('.ActiveList');
             var upcomingContent = document.querySelector('.UpcomingList');
             var archivedContent = document.querySelector('.ArchivedList');
 
