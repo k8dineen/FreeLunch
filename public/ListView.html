@@ -38,6 +38,8 @@
         <button id="archivedButton" onclick="changeTab('archivedButton', 'ArchivedList')">Archived</button>
     </div>
 
+    
+
     <!-- Active List -->
     <div class="ActiveList">
             <div class ="list-item">
@@ -117,6 +119,22 @@
         </div>
     </div>
 
+    <script>
+        document.getElementById("savedforlater").addEventListener("click", function() {
+            // EDIT WITH CORRECT PAGE NAME
+            window.location.href = "savedforlater.html";
+        });
+        document.getElementById("addfood").addEventListener("click", function() {
+            // // EDIT WITH CORRECT PAGE NAME
+            window.location.href = "addfood.html";
+        });
+    </script>
+
+    <div class="third-toolbar">
+        <button id="savedforlater">Saved for Later</button>
+        <button id="addfood">Add Food</button>
+    </div>
+    
     <script>
         // Function to set the default state of the page
         function setDefaultState() {
