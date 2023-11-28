@@ -73,6 +73,24 @@ button img {
     color: white;
 }
 
+.third-toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #4484EA;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* borders and spacing for third toolbar */
+.third-toolbar button {
+    flex-grow: 1;
+    border: 1px solid black; /* Add black borders */
+    background-color: #4484EA;
+    color: white;
+    font-size: 25px;
+    height: 70px;
+}
+
 /* All drop down section are for Filter drop menu */
 .dropdown {
     position: relative;
