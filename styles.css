@@ -1,0 +1,103 @@
+  .App {
+    text-align: center;
+    padding: 4rem;
+    display: none;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Map/FreeLunch/Filter toolbar */
+  .toolbar {
+      width: 100%;
+      background-color: white;
+      color: #4484EA;
+      padding: 10px 0;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* FreeLunch */
+  .toolbar h1 {
+      margin: 0;
+  }
+
+  /* Buttons on toolbars: Map, Filter, Active, Upcoming, Archived */
+  button {
+      background-color: white;
+      color: #4484EA;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+  /* map and filter img */
+  button img {
+      width: 40px;
+      height: auto;
+      margin-right: 100px;
+      margin-left: 100px;
+  }
+
+  /* Toolbar for Active, Upcoming, Archived */
+  .second-toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      background-color: #F4F4F4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* borders and spacing for second toolbar */
+  .second-toolbar button {
+      flex-grow: 1;
+      border: 1px solid black; /* Add black borders */
+  }
+
+  /* selected button background */
+  .active {
+      background-color: #4484EA;
+      color: white;
+  }
+
+  /* All drop down sections are for Filter drop menu */
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      width: 150px; /* Adjust the width of the dropdown */
+  }
+
+  .dropdown-content label {
+      display: block;
+      padding: 8px;
+      white-space: nowrap; /* Prevent wrapping of the checkbox labels */
+      margin-right: 100px;
+  }
+
+  .dropdown:hover .dropdown-content {
+      display: block;
+      left: 0;
+      right: auto;
+  }
+
+
+  
+
+
+
+  

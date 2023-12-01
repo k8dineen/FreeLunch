@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="listview_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="App"></div>
+    <!-- handles the top tool bar with map and filter buttons -->
+    <div class="toolbar">
+        <a href="MapView.html">
+            <button id="mapButton">
+                <img src="images/map.png" alt="Map">
+            </button>
+        </a>
+        <h1>FreeLunch</h1>
+        <div class="dropdown">
+            <button id="filterButton">
+                <img src="images/filter.png" alt="Filter">
+            </button>
+            <div class="dropdown-content">
+                <label><input type="checkbox">Vegetarian</label>
+                <label><input type="checkbox">Gluten Free</label>
+                <label><input type="checkbox">Vegan</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- handles the toolbar that shows events by dates -->
+    <div class="second-toolbar">
+        <button id="activeButton" onclick="changeTab('activeButton', 'List')">Active</button>
+        <button id="upcomingButton" onclick="changeTab('upcomingButton', 'UpcomingList')">Upcoming</button>
+        <button id="archivedButton" onclick="changeTab('archivedButton', 'ArchivedList')">Archived</button>
+    </div>
+
+    
+    <!--Lists-->
+    <div class="ActiveList" id="activeList">
+    </div>
+
+    <div class="UpcomingList" style="display: none;">
+    </div>
+
+    <div class="ArchivedList" style="display: none;">
+    </div>
+
+
+    <script>
+        //The messiest function to fix JavaScripts terrible Dates 
+        function formatDate(dateString) {
+            let [year, month, day] = dateString.split('-');
+            let incrementedDay = parseInt(day, 10)+1;
+            let formattedDate = `${year}-${month}-${incrementedDay}`;
+            return formattedDate;
+        }
+
+        // Function to generate list items dynamically
+        function generateListItems(data, containerId) {
+            var container = document.getElementById(containerId);
+            // Clear existing items in the container
+            container.innerHTML = '';
+
+            data.forEach(function (item) {
+                // Get todays date & format it to yyyy-mm-dd
+                var currentDate = new Date();
+                var year = currentDate.getFullYear();
+                var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); 
+                var day = currentDate.getDate().toString().padStart(2, '0');
+                var formatCurrentDate = `${year}-${month}-${day}`;
+
+                //Get the correct selected date by user
+                var itemDate = (item.itemDate); 
+                var formattedDate = formatDate(itemDate);
+
+                //Get selected date written out in day of week, month, day
+                let options = {weekday: 'long', month: 'short', day: 'numeric'};
+                let writtenOutDate = new Date(formattedDate).toLocaleDateString('en-US', options);
+
+                var listItem = document.createElement('div');
+                listItem.className = 'list-item';
+                listItem.innerHTML = `
+                    <div class="item-image">
+                        <img src="${item.itemImage}" alt="${item.itemName}">
+                    </div>
+                    <div class="item-text">
+                        <div class='item-primary-text'>${item.itemName}</div>
+                        <div class='item-secondary-text'>${item.itemLocation}</div>
+                        <div class='item-date'>${writtenOutDate}</div>
+                    </div>
+                `;
+                
+                console.log('itemDate: ', itemDate);
+                console.log('currDate', formatCurrentDate);
+                
+                if (itemDate > formatCurrentDate) {
+                    // Check if the date is today or in the future
+                    var upcomingContent = document.querySelector('.UpcomingList');
+                    upcomingContent.appendChild(listItem);
+                } else {
+                    // Otherwise, consider it as an active item
+                    var activeContent = document.querySelector('.ActiveList');
+                    activeContent.appendChild(listItem);
+                }
+            });
+        }
+
+        //Automatically start with Active list on screen view
+        function setDefaultState() {
+            // Add the "active" class to the "Active" button
+            document.getElementById('activeButton').classList.add('active');
+            var activeContent = document.querySelector('.ActiveList');
+            activeContent.style.display = 'block';
+        }
+
+        function changeTab(tabId, contentId) {
+            // Remove the "active" class from all buttons
+            document.getElementById('activeButton').classList.remove('active');
+            document.getElementById('upcomingButton').classList.remove('active');
+            document.getElementById('archivedButton').classList.remove('active');
+
+            // Add the "active" class to the clicked button
+            document.getElementById(tabId).classList.add('active');
+
+            // Toggle the visibility of the content based on the active tab
+            var activeContent = document.querySelector('.ActiveList');
+            var upcomingContent = document.querySelector('.UpcomingList');
+            var archivedContent = document.querySelector('.ArchivedList');
+
+            if (tabId === 'activeButton') {
+                activeContent.style.display = 'block';
+                upcomingContent.style.display = 'none';
+                archivedContent.style.display = 'none';
+            } else if (tabId === 'upcomingButton') {
+                activeContent.style.display = 'none';
+                upcomingContent.style.display = 'block';
+                archivedContent.style.display = 'none';
+            } else if (tabId === 'archivedButton') {
+                activeContent.style.display = 'none';
+                upcomingContent.style.display = 'none';
+                archivedContent.style.display = 'block';
+            }
+        }
+
+        // Combine all functions into a single onload event
+        window.onload = function () {
+            setDefaultState();
+
+            // Extract query parameters from the URL
+            var queryParams = getQueryParameters();
+
+            // Check if itemName, itemLocation, and itemImage are present in the query parameters
+            if (queryParams.itemName && queryParams.itemLocation && queryParams.itemDate && queryParams.itemImage) {
+                // Create a new item object
+                var newItem = {
+                    itemName: queryParams.itemName,
+                    itemLocation: queryParams.itemLocation,
+                    itemDate: queryParams.itemDate,
+                    itemImage: decodeURIComponent(queryParams.itemImage) // Update to decode the URI component
+                };
+
+                // Add the new item to the data array
+                var dynamicData = [newItem]; // You can modify this to use your existing data array
+
+                // Update the list with the new item
+                generateListItems(dynamicData, 'activeList');
+            }
+        };
+
+        function getQueryParameters() {
+            var queryParams = {};
+            var queryString = window.location.search.substring(1);
+            var pairs = queryString.split('&');
+
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i].split('=');
+                queryParams[pair[0]] = decodeURIComponent(pair[1]);
+            }
+            return queryParams;
+        }
+    </script>
+
+
+
+    <div class="third-toolbar">
+        <button id="savedforlater">Saved for Later</button>
+        <button id="addfood">Add Food</button>
+    </div>    
+
+</body>
+</html>
